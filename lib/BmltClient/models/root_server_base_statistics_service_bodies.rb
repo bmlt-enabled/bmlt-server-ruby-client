@@ -14,28 +14,22 @@ require 'date'
 require 'time'
 
 module BmltClient
-  class UserBase
-    attr_accessor :username
+  class RootServerBaseStatisticsServiceBodies
+    attr_accessor :num_zones
 
-    attr_accessor :type
+    attr_accessor :num_regions
 
-    attr_accessor :display_name
+    attr_accessor :num_areas
 
-    attr_accessor :description
-
-    attr_accessor :email
-
-    attr_accessor :owner_id
+    attr_accessor :num_groups
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'username' => :'username',
-        :'type' => :'type',
-        :'display_name' => :'displayName',
-        :'description' => :'description',
-        :'email' => :'email',
-        :'owner_id' => :'ownerId'
+        :'num_zones' => :'numZones',
+        :'num_regions' => :'numRegions',
+        :'num_areas' => :'numAreas',
+        :'num_groups' => :'numGroups'
       }
     end
 
@@ -47,12 +41,10 @@ module BmltClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'username' => :'String',
-        :'type' => :'String',
-        :'display_name' => :'String',
-        :'description' => :'String',
-        :'email' => :'String',
-        :'owner_id' => :'String'
+        :'num_zones' => :'Integer',
+        :'num_regions' => :'Integer',
+        :'num_areas' => :'Integer',
+        :'num_groups' => :'Integer'
       }
     end
 
@@ -66,39 +58,39 @@ module BmltClient
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `BmltClient::UserBase` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `BmltClient::RootServerBaseStatisticsServiceBodies` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `BmltClient::UserBase`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `BmltClient::RootServerBaseStatisticsServiceBodies`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'username')
-        self.username = attributes[:'username']
+      if attributes.key?(:'num_zones')
+        self.num_zones = attributes[:'num_zones']
+      else
+        self.num_zones = nil
       end
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.key?(:'num_regions')
+        self.num_regions = attributes[:'num_regions']
+      else
+        self.num_regions = nil
       end
 
-      if attributes.key?(:'display_name')
-        self.display_name = attributes[:'display_name']
+      if attributes.key?(:'num_areas')
+        self.num_areas = attributes[:'num_areas']
+      else
+        self.num_areas = nil
       end
 
-      if attributes.key?(:'description')
-        self.description = attributes[:'description']
-      end
-
-      if attributes.key?(:'email')
-        self.email = attributes[:'email']
-      end
-
-      if attributes.key?(:'owner_id')
-        self.owner_id = attributes[:'owner_id']
+      if attributes.key?(:'num_groups')
+        self.num_groups = attributes[:'num_groups']
+      else
+        self.num_groups = nil
       end
     end
 
@@ -107,6 +99,22 @@ module BmltClient
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @num_zones.nil?
+        invalid_properties.push('invalid value for "num_zones", num_zones cannot be nil.')
+      end
+
+      if @num_regions.nil?
+        invalid_properties.push('invalid value for "num_regions", num_regions cannot be nil.')
+      end
+
+      if @num_areas.nil?
+        invalid_properties.push('invalid value for "num_areas", num_areas cannot be nil.')
+      end
+
+      if @num_groups.nil?
+        invalid_properties.push('invalid value for "num_groups", num_groups cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -114,6 +122,10 @@ module BmltClient
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @num_zones.nil?
+      return false if @num_regions.nil?
+      return false if @num_areas.nil?
+      return false if @num_groups.nil?
       true
     end
 
@@ -122,12 +134,10 @@ module BmltClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          username == o.username &&
-          type == o.type &&
-          display_name == o.display_name &&
-          description == o.description &&
-          email == o.email &&
-          owner_id == o.owner_id
+          num_zones == o.num_zones &&
+          num_regions == o.num_regions &&
+          num_areas == o.num_areas &&
+          num_groups == o.num_groups
     end
 
     # @see the `==` method
@@ -139,7 +149,7 @@ module BmltClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [username, type, display_name, description, email, owner_id].hash
+      [num_zones, num_regions, num_areas, num_groups].hash
     end
 
     # Builds the object from hash

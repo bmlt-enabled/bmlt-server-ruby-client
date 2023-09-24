@@ -20,6 +20,8 @@ All URIs are relative to *http://localhost:8000/main_server*
 | [**get_formats**](RootServerApi.md#get_formats) | **GET** /api/v1/formats | Retrieves formats |
 | [**get_meeting**](RootServerApi.md#get_meeting) | **GET** /api/v1/meetings/{meetingId} | Retrieves a meeting |
 | [**get_meetings**](RootServerApi.md#get_meetings) | **GET** /api/v1/meetings | Retrieves meetings |
+| [**get_root_server**](RootServerApi.md#get_root_server) | **GET** /api/v1/rootservers/{rootServerId} | Retrieves a root server |
+| [**get_root_servers**](RootServerApi.md#get_root_servers) | **GET** /api/v1/rootservers | Retrieves root servers |
 | [**get_service_bodies**](RootServerApi.md#get_service_bodies) | **GET** /api/v1/servicebodies | Retrieves service bodies |
 | [**get_service_body**](RootServerApi.md#get_service_body) | **GET** /api/v1/servicebodies/{serviceBodyId} | Retrieves a service body |
 | [**get_user**](RootServerApi.md#get_user) | **GET** /api/v1/users/{userId} | Retrieves a single user |
@@ -1116,6 +1118,136 @@ end
 ### Return type
 
 [**Array&lt;Meeting&gt;**](Meeting.md)
+
+### Authorization
+
+[bmltToken](../README.md#bmltToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_root_server
+
+> <RootServer> get_root_server(root_server_id)
+
+Retrieves a root server
+
+Retrieve a single root server id.
+
+### Examples
+
+```ruby
+require 'time'
+require 'BmltClient'
+
+api_instance = BmltClient::RootServerApi.new
+root_server_id = 1 # Integer | ID of root server
+
+begin
+  # Retrieves a root server
+  result = api_instance.get_root_server(root_server_id)
+  p result
+rescue BmltClient::ApiError => e
+  puts "Error when calling RootServerApi->get_root_server: #{e}"
+end
+```
+
+#### Using the get_root_server_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<RootServer>, Integer, Hash)> get_root_server_with_http_info(root_server_id)
+
+```ruby
+begin
+  # Retrieves a root server
+  data, status_code, headers = api_instance.get_root_server_with_http_info(root_server_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <RootServer>
+rescue BmltClient::ApiError => e
+  puts "Error when calling RootServerApi->get_root_server_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **root_server_id** | **Integer** | ID of root server |  |
+
+### Return type
+
+[**RootServer**](RootServer.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_root_servers
+
+> <Array<RootServer>> get_root_servers
+
+Retrieves root servers
+
+Retrieve root servers.
+
+### Examples
+
+```ruby
+require 'time'
+require 'BmltClient'
+# setup authorization
+BmltClient.configure do |config|
+  # Configure OAuth2 access token for authorization: bmltToken
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = BmltClient::RootServerApi.new
+
+begin
+  # Retrieves root servers
+  result = api_instance.get_root_servers
+  p result
+rescue BmltClient::ApiError => e
+  puts "Error when calling RootServerApi->get_root_servers: #{e}"
+end
+```
+
+#### Using the get_root_servers_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<RootServer>>, Integer, Hash)> get_root_servers_with_http_info
+
+```ruby
+begin
+  # Retrieves root servers
+  data, status_code, headers = api_instance.get_root_servers_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<RootServer>>
+rescue BmltClient::ApiError => e
+  puts "Error when calling RootServerApi->get_root_servers_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Array&lt;RootServer&gt;**](RootServer.md)
 
 ### Authorization
 

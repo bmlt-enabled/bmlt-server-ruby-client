@@ -14,28 +14,31 @@ require 'date'
 require 'time'
 
 module BmltClient
-  class UserBase
-    attr_accessor :username
+  class RootServer
+    attr_accessor :source_id
 
-    attr_accessor :type
+    attr_accessor :name
 
-    attr_accessor :display_name
+    attr_accessor :url
 
-    attr_accessor :description
+    attr_accessor :statistics
 
-    attr_accessor :email
+    attr_accessor :server_info
 
-    attr_accessor :owner_id
+    attr_accessor :last_successful_import
+
+    attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'username' => :'username',
-        :'type' => :'type',
-        :'display_name' => :'displayName',
-        :'description' => :'description',
-        :'email' => :'email',
-        :'owner_id' => :'ownerId'
+        :'source_id' => :'sourceId',
+        :'name' => :'name',
+        :'url' => :'url',
+        :'statistics' => :'statistics',
+        :'server_info' => :'serverInfo',
+        :'last_successful_import' => :'lastSuccessfulImport',
+        :'id' => :'id'
       }
     end
 
@@ -47,12 +50,13 @@ module BmltClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'username' => :'String',
-        :'type' => :'String',
-        :'display_name' => :'String',
-        :'description' => :'String',
-        :'email' => :'String',
-        :'owner_id' => :'String'
+        :'source_id' => :'Integer',
+        :'name' => :'String',
+        :'url' => :'String',
+        :'statistics' => :'RootServerBaseStatistics',
+        :'server_info' => :'String',
+        :'last_successful_import' => :'Time',
+        :'id' => :'Integer'
       }
     end
 
@@ -62,43 +66,64 @@ module BmltClient
       ])
     end
 
+    # List of class defined in allOf (OpenAPI v3)
+    def self.openapi_all_of
+      [
+      :'RootServerBase'
+      ]
+    end
+
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `BmltClient::UserBase` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `BmltClient::RootServer` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `BmltClient::UserBase`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `BmltClient::RootServer`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'username')
-        self.username = attributes[:'username']
+      if attributes.key?(:'source_id')
+        self.source_id = attributes[:'source_id']
+      else
+        self.source_id = nil
       end
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
+      else
+        self.name = nil
       end
 
-      if attributes.key?(:'display_name')
-        self.display_name = attributes[:'display_name']
+      if attributes.key?(:'url')
+        self.url = attributes[:'url']
+      else
+        self.url = nil
       end
 
-      if attributes.key?(:'description')
-        self.description = attributes[:'description']
+      if attributes.key?(:'statistics')
+        self.statistics = attributes[:'statistics']
       end
 
-      if attributes.key?(:'email')
-        self.email = attributes[:'email']
+      if attributes.key?(:'server_info')
+        self.server_info = attributes[:'server_info']
       end
 
-      if attributes.key?(:'owner_id')
-        self.owner_id = attributes[:'owner_id']
+      if attributes.key?(:'last_successful_import')
+        self.last_successful_import = attributes[:'last_successful_import']
+      else
+        self.last_successful_import = nil
+      end
+
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
+      else
+        self.id = nil
       end
     end
 
@@ -107,6 +132,26 @@ module BmltClient
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @source_id.nil?
+        invalid_properties.push('invalid value for "source_id", source_id cannot be nil.')
+      end
+
+      if @name.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      end
+
+      if @url.nil?
+        invalid_properties.push('invalid value for "url", url cannot be nil.')
+      end
+
+      if @last_successful_import.nil?
+        invalid_properties.push('invalid value for "last_successful_import", last_successful_import cannot be nil.')
+      end
+
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -114,6 +159,11 @@ module BmltClient
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @source_id.nil?
+      return false if @name.nil?
+      return false if @url.nil?
+      return false if @last_successful_import.nil?
+      return false if @id.nil?
       true
     end
 
@@ -122,12 +172,13 @@ module BmltClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          username == o.username &&
-          type == o.type &&
-          display_name == o.display_name &&
-          description == o.description &&
-          email == o.email &&
-          owner_id == o.owner_id
+          source_id == o.source_id &&
+          name == o.name &&
+          url == o.url &&
+          statistics == o.statistics &&
+          server_info == o.server_info &&
+          last_successful_import == o.last_successful_import &&
+          id == o.id
     end
 
     # @see the `==` method
@@ -139,7 +190,7 @@ module BmltClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [username, type, display_name, description, email, owner_id].hash
+      [source_id, name, url, statistics, server_info, last_successful_import, id].hash
     end
 
     # Builds the object from hash

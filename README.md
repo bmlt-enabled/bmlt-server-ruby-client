@@ -60,6 +60,8 @@ require 'BmltClient'
 BmltClient.configure do |config|
   # Configure OAuth2 access token for authorization: bmltToken
   config.access_token = 'YOUR ACCESS TOKEN'
+  # Configure a proc to get access tokens in lieu of the static access_token configuration
+  config.access_token_getter = -> { 'YOUR TOKEN GETTER PROC' } 
 end
 
 api_instance = BmltClient::RootServerApi.new
@@ -95,6 +97,8 @@ Class | Method | HTTP request | Description
 *BmltClient::RootServerApi* | [**get_formats**](docs/RootServerApi.md#get_formats) | **GET** /api/v1/formats | Retrieves formats
 *BmltClient::RootServerApi* | [**get_meeting**](docs/RootServerApi.md#get_meeting) | **GET** /api/v1/meetings/{meetingId} | Retrieves a meeting
 *BmltClient::RootServerApi* | [**get_meetings**](docs/RootServerApi.md#get_meetings) | **GET** /api/v1/meetings | Retrieves meetings
+*BmltClient::RootServerApi* | [**get_root_server**](docs/RootServerApi.md#get_root_server) | **GET** /api/v1/rootservers/{rootServerId} | Retrieves a root server
+*BmltClient::RootServerApi* | [**get_root_servers**](docs/RootServerApi.md#get_root_servers) | **GET** /api/v1/rootservers | Retrieves root servers
 *BmltClient::RootServerApi* | [**get_service_bodies**](docs/RootServerApi.md#get_service_bodies) | **GET** /api/v1/servicebodies | Retrieves service bodies
 *BmltClient::RootServerApi* | [**get_service_body**](docs/RootServerApi.md#get_service_body) | **GET** /api/v1/servicebodies/{serviceBodyId} | Retrieves a service body
 *BmltClient::RootServerApi* | [**get_user**](docs/RootServerApi.md#get_user) | **GET** /api/v1/users/{userId} | Retrieves a single user
@@ -113,9 +117,9 @@ Class | Method | HTTP request | Description
 
  - [BmltClient::AuthenticationError](docs/AuthenticationError.md)
  - [BmltClient::AuthorizationError](docs/AuthorizationError.md)
+ - [BmltClient::ConflictError](docs/ConflictError.md)
  - [BmltClient::ErrorTest](docs/ErrorTest.md)
  - [BmltClient::Format](docs/Format.md)
- - [BmltClient::FormatAllOf](docs/FormatAllOf.md)
  - [BmltClient::FormatBase](docs/FormatBase.md)
  - [BmltClient::FormatCreate](docs/FormatCreate.md)
  - [BmltClient::FormatPartialUpdate](docs/FormatPartialUpdate.md)
@@ -127,6 +131,11 @@ Class | Method | HTTP request | Description
  - [BmltClient::MeetingPartialUpdate](docs/MeetingPartialUpdate.md)
  - [BmltClient::MeetingUpdate](docs/MeetingUpdate.md)
  - [BmltClient::NotFoundError](docs/NotFoundError.md)
+ - [BmltClient::RootServer](docs/RootServer.md)
+ - [BmltClient::RootServerBase](docs/RootServerBase.md)
+ - [BmltClient::RootServerBaseStatistics](docs/RootServerBaseStatistics.md)
+ - [BmltClient::RootServerBaseStatisticsMeetings](docs/RootServerBaseStatisticsMeetings.md)
+ - [BmltClient::RootServerBaseStatisticsServiceBodies](docs/RootServerBaseStatisticsServiceBodies.md)
  - [BmltClient::ServerError](docs/ServerError.md)
  - [BmltClient::ServiceBody](docs/ServiceBody.md)
  - [BmltClient::ServiceBodyBase](docs/ServiceBodyBase.md)
@@ -138,7 +147,6 @@ Class | Method | HTTP request | Description
  - [BmltClient::User](docs/User.md)
  - [BmltClient::UserBase](docs/UserBase.md)
  - [BmltClient::UserCreate](docs/UserCreate.md)
- - [BmltClient::UserCreateAllOf](docs/UserCreateAllOf.md)
  - [BmltClient::UserPartialUpdate](docs/UserPartialUpdate.md)
  - [BmltClient::UserUpdate](docs/UserUpdate.md)
  - [BmltClient::ValidationError](docs/ValidationError.md)
@@ -147,6 +155,7 @@ Class | Method | HTTP request | Description
 ## Documentation for Authorization
 
 
+Authentication schemes defined for the API:
 ### bmltToken
 
 

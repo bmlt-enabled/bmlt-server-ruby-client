@@ -14,28 +14,25 @@ require 'date'
 require 'time'
 
 module BmltClient
-  class UserBase
-    attr_accessor :username
+  class RootServerBaseStatisticsMeetings
+    attr_accessor :num_total
 
-    attr_accessor :type
+    attr_accessor :num_in_person
 
-    attr_accessor :display_name
+    attr_accessor :num_virtual
 
-    attr_accessor :description
+    attr_accessor :num_hybrid
 
-    attr_accessor :email
-
-    attr_accessor :owner_id
+    attr_accessor :num_unknown
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'username' => :'username',
-        :'type' => :'type',
-        :'display_name' => :'displayName',
-        :'description' => :'description',
-        :'email' => :'email',
-        :'owner_id' => :'ownerId'
+        :'num_total' => :'numTotal',
+        :'num_in_person' => :'numInPerson',
+        :'num_virtual' => :'numVirtual',
+        :'num_hybrid' => :'numHybrid',
+        :'num_unknown' => :'numUnknown'
       }
     end
 
@@ -47,12 +44,11 @@ module BmltClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'username' => :'String',
-        :'type' => :'String',
-        :'display_name' => :'String',
-        :'description' => :'String',
-        :'email' => :'String',
-        :'owner_id' => :'String'
+        :'num_total' => :'Integer',
+        :'num_in_person' => :'Integer',
+        :'num_virtual' => :'Integer',
+        :'num_hybrid' => :'Integer',
+        :'num_unknown' => :'Integer'
       }
     end
 
@@ -66,39 +62,45 @@ module BmltClient
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `BmltClient::UserBase` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `BmltClient::RootServerBaseStatisticsMeetings` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `BmltClient::UserBase`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `BmltClient::RootServerBaseStatisticsMeetings`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'username')
-        self.username = attributes[:'username']
+      if attributes.key?(:'num_total')
+        self.num_total = attributes[:'num_total']
+      else
+        self.num_total = nil
       end
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.key?(:'num_in_person')
+        self.num_in_person = attributes[:'num_in_person']
+      else
+        self.num_in_person = nil
       end
 
-      if attributes.key?(:'display_name')
-        self.display_name = attributes[:'display_name']
+      if attributes.key?(:'num_virtual')
+        self.num_virtual = attributes[:'num_virtual']
+      else
+        self.num_virtual = nil
       end
 
-      if attributes.key?(:'description')
-        self.description = attributes[:'description']
+      if attributes.key?(:'num_hybrid')
+        self.num_hybrid = attributes[:'num_hybrid']
+      else
+        self.num_hybrid = nil
       end
 
-      if attributes.key?(:'email')
-        self.email = attributes[:'email']
-      end
-
-      if attributes.key?(:'owner_id')
-        self.owner_id = attributes[:'owner_id']
+      if attributes.key?(:'num_unknown')
+        self.num_unknown = attributes[:'num_unknown']
+      else
+        self.num_unknown = nil
       end
     end
 
@@ -107,6 +109,26 @@ module BmltClient
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @num_total.nil?
+        invalid_properties.push('invalid value for "num_total", num_total cannot be nil.')
+      end
+
+      if @num_in_person.nil?
+        invalid_properties.push('invalid value for "num_in_person", num_in_person cannot be nil.')
+      end
+
+      if @num_virtual.nil?
+        invalid_properties.push('invalid value for "num_virtual", num_virtual cannot be nil.')
+      end
+
+      if @num_hybrid.nil?
+        invalid_properties.push('invalid value for "num_hybrid", num_hybrid cannot be nil.')
+      end
+
+      if @num_unknown.nil?
+        invalid_properties.push('invalid value for "num_unknown", num_unknown cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -114,6 +136,11 @@ module BmltClient
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @num_total.nil?
+      return false if @num_in_person.nil?
+      return false if @num_virtual.nil?
+      return false if @num_hybrid.nil?
+      return false if @num_unknown.nil?
       true
     end
 
@@ -122,12 +149,11 @@ module BmltClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          username == o.username &&
-          type == o.type &&
-          display_name == o.display_name &&
-          description == o.description &&
-          email == o.email &&
-          owner_id == o.owner_id
+          num_total == o.num_total &&
+          num_in_person == o.num_in_person &&
+          num_virtual == o.num_virtual &&
+          num_hybrid == o.num_hybrid &&
+          num_unknown == o.num_unknown
     end
 
     # @see the `==` method
@@ -139,7 +165,7 @@ module BmltClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [username, type, display_name, description, email, owner_id].hash
+      [num_total, num_in_person, num_virtual, num_hybrid, num_unknown].hash
     end
 
     # Builds the object from hash
