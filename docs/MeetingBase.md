@@ -38,8 +38,9 @@
 | **contact_email_1** | **String** |  | [optional] |
 | **contact_email_2** | **String** |  | [optional] |
 | **bus_lines** | **String** |  | [optional] |
-| **train_line** | **String** |  | [optional] |
+| **train_lines** | **String** |  | [optional] |
 | **comments** | **String** |  | [optional] |
+| **custom_fields** | **Hash&lt;String, String&gt;** |  | [optional] |
 
 ## Example
 
@@ -81,8 +82,9 @@ instance = BmltClient::MeetingBase.new(
   contact_email_1: string,
   contact_email_2: string,
   bus_lines: string,
-  train_line: string,
-  comments: string
+  train_lines: string,
+  comments: string,
+  custom_fields: {&quot;key1&quot;:&quot;value1&quot;,&quot;key2&quot;:&quot;value2&quot;}
 )
 ```
 

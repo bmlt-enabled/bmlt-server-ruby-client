@@ -13,8 +13,8 @@ generate: openapi.json
 	    -p gemLicense=MIT \
 	    -p gemName=BmltClient \
 	    -p moduleName=BmltClient \
-	    -p gemVersion=1.0.0 \
-		--git-repo-id=bmlt-root-server-ruby-client \
+	    -p gemVersion=1.0.1 \
+		--git-repo-id=bmlt-server-ruby-client \
 		--git-user-id=bmlt-enabled \
 	    -o .
 

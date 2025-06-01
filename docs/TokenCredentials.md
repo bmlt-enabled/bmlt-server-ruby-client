@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **password** | **String** |  |  |
 | **username** | **String** |  |  |
+| **password** | **String** |  |  |
 
 ## Example
 
@@ -13,8 +13,8 @@
 require 'BmltClient'
 
 instance = BmltClient::TokenCredentials.new(
-  password: PassWord12345,
-  username: MyUsername
+  username: MyUsername,
+  password: PassWord12345
 )
 ```
 

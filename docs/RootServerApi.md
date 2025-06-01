@@ -18,7 +18,9 @@ All URIs are relative to *http://localhost:8000/main_server*
 | [**delete_user**](RootServerApi.md#delete_user) | **DELETE** /api/v1/users/{userId} | Deletes a user |
 | [**get_format**](RootServerApi.md#get_format) | **GET** /api/v1/formats/{formatId} | Retrieves a format |
 | [**get_formats**](RootServerApi.md#get_formats) | **GET** /api/v1/formats | Retrieves formats |
+| [**get_laravel_log**](RootServerApi.md#get_laravel_log) | **GET** /api/v1/logs/laravel | Retrieves laravel log |
 | [**get_meeting**](RootServerApi.md#get_meeting) | **GET** /api/v1/meetings/{meetingId} | Retrieves a meeting |
+| [**get_meeting_changes**](RootServerApi.md#get_meeting_changes) | **GET** /api/v1/meetings/{meetingId}/changes | Retrieve changes for a meeting |
 | [**get_meetings**](RootServerApi.md#get_meetings) | **GET** /api/v1/meetings | Retrieves meetings |
 | [**get_root_server**](RootServerApi.md#get_root_server) | **GET** /api/v1/rootservers/{rootServerId} | Retrieves a root server |
 | [**get_root_servers**](RootServerApi.md#get_root_servers) | **GET** /api/v1/rootservers | Retrieves root servers |
@@ -182,7 +184,7 @@ require 'time'
 require 'BmltClient'
 
 api_instance = BmltClient::RootServerApi.new
-token_credentials = BmltClient::TokenCredentials.new({password: 'PassWord12345', username: 'MyUsername'}) # TokenCredentials | User credentials
+token_credentials = BmltClient::TokenCredentials.new({username: 'MyUsername', password: 'PassWord12345'}) # TokenCredentials | User credentials
 
 begin
   # Creates a token
@@ -983,6 +985,72 @@ This endpoint does not need any parameter.
 - **Accept**: application/json
 
 
+## get_laravel_log
+
+> File get_laravel_log
+
+Retrieves laravel log
+
+Retrieve the laravel log if it exists.
+
+### Examples
+
+```ruby
+require 'time'
+require 'BmltClient'
+# setup authorization
+BmltClient.configure do |config|
+  # Configure OAuth2 access token for authorization: bmltToken
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = BmltClient::RootServerApi.new
+
+begin
+  # Retrieves laravel log
+  result = api_instance.get_laravel_log
+  p result
+rescue BmltClient::ApiError => e
+  puts "Error when calling RootServerApi->get_laravel_log: #{e}"
+end
+```
+
+#### Using the get_laravel_log_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(File, Integer, Hash)> get_laravel_log_with_http_info
+
+```ruby
+begin
+  # Retrieves laravel log
+  data, status_code, headers = api_instance.get_laravel_log_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => File
+rescue BmltClient::ApiError => e
+  puts "Error when calling RootServerApi->get_laravel_log_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**File**
+
+### Authorization
+
+[bmltToken](../README.md#bmltToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/gzip, application/json
+
+
 ## get_meeting
 
 > <Meeting> get_meeting(meeting_id)
@@ -1041,6 +1109,75 @@ end
 ### Return type
 
 [**Meeting**](Meeting.md)
+
+### Authorization
+
+[bmltToken](../README.md#bmltToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## get_meeting_changes
+
+> <Array<MeetingChangeResource>> get_meeting_changes(meeting_id)
+
+Retrieve changes for a meeting
+
+Retrieve all changes made to a specific meeting.
+
+### Examples
+
+```ruby
+require 'time'
+require 'BmltClient'
+# setup authorization
+BmltClient.configure do |config|
+  # Configure OAuth2 access token for authorization: bmltToken
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = BmltClient::RootServerApi.new
+meeting_id = 1 # Integer | ID of the meeting
+
+begin
+  # Retrieve changes for a meeting
+  result = api_instance.get_meeting_changes(meeting_id)
+  p result
+rescue BmltClient::ApiError => e
+  puts "Error when calling RootServerApi->get_meeting_changes: #{e}"
+end
+```
+
+#### Using the get_meeting_changes_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<MeetingChangeResource>>, Integer, Hash)> get_meeting_changes_with_http_info(meeting_id)
+
+```ruby
+begin
+  # Retrieve changes for a meeting
+  data, status_code, headers = api_instance.get_meeting_changes_with_http_info(meeting_id)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<MeetingChangeResource>>
+rescue BmltClient::ApiError => e
+  puts "Error when calling RootServerApi->get_meeting_changes_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **meeting_id** | **Integer** | ID of the meeting |  |
+
+### Return type
+
+[**Array&lt;MeetingChangeResource&gt;**](MeetingChangeResource.md)
 
 ### Authorization
 
@@ -1206,11 +1343,6 @@ Retrieve root servers.
 ```ruby
 require 'time'
 require 'BmltClient'
-# setup authorization
-BmltClient.configure do |config|
-  # Configure OAuth2 access token for authorization: bmltToken
-  config.access_token = 'YOUR ACCESS TOKEN'
-end
 
 api_instance = BmltClient::RootServerApi.new
 
@@ -1251,7 +1383,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bmltToken](../README.md#bmltToken)
+No authorization required
 
 ### HTTP request headers
 

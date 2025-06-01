@@ -9,7 +9,7 @@
 | **display_name** | **String** |  |  |
 | **description** | **String** |  | [optional] |
 | **email** | **String** |  | [optional] |
-| **owner_id** | **String** |  | [optional] |
+| **owner_id** | **Integer** |  | [optional] |
 | **password** | **String** |  |  |
 
 ## Example
