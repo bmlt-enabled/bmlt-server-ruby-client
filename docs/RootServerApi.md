@@ -1803,7 +1803,7 @@ nil (empty response body)
 
 ## patch_meeting
 
-> patch_meeting(meeting_id, meeting_partial_update)
+> patch_meeting(meeting_id, meeting_partial_update, opts)
 
 Patches a meeting
 
@@ -1822,11 +1822,14 @@ end
 
 api_instance = BmltClient::RootServerApi.new
 meeting_id = 1 # Integer | ID of meeting
-meeting_partial_update = BmltClient::MeetingPartialUpdate.new({service_body_id: 0, format_ids: [37], venue_type: 1, day: 0, start_time: 'string', duration: '01:00', latitude: 35.698741, longitude: -81.26273, published: true, name: 'string'}) # MeetingPartialUpdate | Pass in fields you want to update.
+meeting_partial_update = BmltClient::MeetingPartialUpdate.new # MeetingPartialUpdate | Pass in fields you want to update.
+opts = {
+  skip_venue_type_location_validation: true # Boolean | specify true to skip venue type location validation
+}
 
 begin
   # Patches a meeting
-  api_instance.patch_meeting(meeting_id, meeting_partial_update)
+  api_instance.patch_meeting(meeting_id, meeting_partial_update, opts)
 rescue BmltClient::ApiError => e
   puts "Error when calling RootServerApi->patch_meeting: #{e}"
 end
@@ -1836,12 +1839,12 @@ end
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> patch_meeting_with_http_info(meeting_id, meeting_partial_update)
+> <Array(nil, Integer, Hash)> patch_meeting_with_http_info(meeting_id, meeting_partial_update, opts)
 
 ```ruby
 begin
   # Patches a meeting
-  data, status_code, headers = api_instance.patch_meeting_with_http_info(meeting_id, meeting_partial_update)
+  data, status_code, headers = api_instance.patch_meeting_with_http_info(meeting_id, meeting_partial_update, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
@@ -1856,6 +1859,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **meeting_id** | **Integer** | ID of meeting |  |
 | **meeting_partial_update** | [**MeetingPartialUpdate**](MeetingPartialUpdate.md) | Pass in fields you want to update. |  |
+| **skip_venue_type_location_validation** | **Boolean** | specify true to skip venue type location validation | [optional] |
 
 ### Return type
 

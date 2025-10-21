@@ -4,20 +4,20 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **service_body_id** | **Integer** |  |  |
-| **format_ids** | **Array&lt;Integer&gt;** |  |  |
-| **venue_type** | **Integer** |  |  |
+| **service_body_id** | **Integer** |  | [optional] |
+| **format_ids** | **Array&lt;Integer&gt;** |  | [optional] |
+| **venue_type** | **Integer** |  | [optional] |
 | **temporarily_virtual** | **Boolean** |  | [optional] |
-| **day** | **Integer** |  |  |
-| **start_time** | **String** |  |  |
-| **duration** | **String** |  |  |
+| **day** | **Integer** |  | [optional] |
+| **start_time** | **String** |  | [optional] |
+| **duration** | **String** |  | [optional] |
 | **time_zone** | **String** |  | [optional] |
-| **latitude** | **Float** |  |  |
-| **longitude** | **Float** |  |  |
-| **published** | **Boolean** |  |  |
+| **latitude** | **Float** |  | [optional] |
+| **longitude** | **Float** |  | [optional] |
+| **published** | **Boolean** |  | [optional] |
 | **email** | **String** |  | [optional] |
 | **world_id** | **String** |  | [optional] |
-| **name** | **String** |  |  |
+| **name** | **String** |  | [optional] |
 | **location_text** | **String** |  | [optional] |
 | **location_info** | **String** |  | [optional] |
 | **location_street** | **String** |  | [optional] |
