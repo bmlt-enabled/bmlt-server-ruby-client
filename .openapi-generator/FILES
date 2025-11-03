@@ -49,6 +49,7 @@ lib/BmltClient.rb
 lib/BmltClient/api/root_server_api.rb
 lib/BmltClient/api_client.rb
 lib/BmltClient/api_error.rb
+lib/BmltClient/api_model_base.rb
 lib/BmltClient/configuration.rb
 lib/BmltClient/models/authentication_error.rb
 lib/BmltClient/models/authorization_error.rb

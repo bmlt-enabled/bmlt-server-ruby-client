@@ -11,6 +11,7 @@
 | **email** | **String** |  |  |
 | **owner_id** | **Integer** |  |  |
 | **id** | **Integer** |  |  |
+| **last_login_at** | **Time** |  | [optional] |
 
 ## Example
 
@@ -24,7 +25,8 @@ instance = BmltClient::User.new(
   description: string,
   email: string,
   owner_id: 0,
-  id: 0
+  id: 0,
+  last_login_at: 2019-05-02T05:05Z
 )
 ```
 
