@@ -26,6 +26,7 @@ All URIs are relative to *http://localhost:8000/main_server*
 | [**get_root_servers**](RootServerApi.md#get_root_servers) | **GET** /api/v1/rootservers | Retrieves root servers |
 | [**get_service_bodies**](RootServerApi.md#get_service_bodies) | **GET** /api/v1/servicebodies | Retrieves service bodies |
 | [**get_service_body**](RootServerApi.md#get_service_body) | **GET** /api/v1/servicebodies/{serviceBodyId} | Retrieves a service body |
+| [**get_settings**](RootServerApi.md#get_settings) | **GET** /api/v1/settings | Retrieves all settings |
 | [**get_user**](RootServerApi.md#get_user) | **GET** /api/v1/users/{userId} | Retrieves a single user |
 | [**get_users**](RootServerApi.md#get_users) | **GET** /api/v1/users | Retrieves users |
 | [**partial_update_user**](RootServerApi.md#partial_update_user) | **PATCH** /api/v1/users/{userId} | Patches a user |
@@ -35,6 +36,7 @@ All URIs are relative to *http://localhost:8000/main_server*
 | [**update_format**](RootServerApi.md#update_format) | **PUT** /api/v1/formats/{formatId} | Updates a format |
 | [**update_meeting**](RootServerApi.md#update_meeting) | **PUT** /api/v1/meetings/{meetingId} | Updates a meeting |
 | [**update_service_body**](RootServerApi.md#update_service_body) | **PUT** /api/v1/servicebodies/{serviceBodyId} | Updates a Service Body |
+| [**update_settings**](RootServerApi.md#update_settings) | **PATCH** /api/v1/settings | Update settings |
 | [**update_user**](RootServerApi.md#update_user) | **PUT** /api/v1/users/{userId} | Update single user |
 
 
@@ -716,11 +718,11 @@ nil (empty response body)
 
 ## delete_service_body
 
-> delete_service_body(service_body_id)
+> delete_service_body(service_body_id, opts)
 
 Deletes a service body
 
-Deletes a service body by id.
+Deletes a service body by id. If the service body has meetings, use force=true to delete them as well.
 
 ### Examples
 
@@ -735,10 +737,13 @@ end
 
 api_instance = BmltClient::RootServerApi.new
 service_body_id = 1 # Integer | ID of service body
+opts = {
+  force: 'true' # String | Force deletion of service body and all associated meetings
+}
 
 begin
   # Deletes a service body
-  api_instance.delete_service_body(service_body_id)
+  api_instance.delete_service_body(service_body_id, opts)
 rescue BmltClient::ApiError => e
   puts "Error when calling RootServerApi->delete_service_body: #{e}"
 end
@@ -748,12 +753,12 @@ end
 
 This returns an Array which contains the response data (`nil` in this case), status code and headers.
 
-> <Array(nil, Integer, Hash)> delete_service_body_with_http_info(service_body_id)
+> <Array(nil, Integer, Hash)> delete_service_body_with_http_info(service_body_id, opts)
 
 ```ruby
 begin
   # Deletes a service body
-  data, status_code, headers = api_instance.delete_service_body_with_http_info(service_body_id)
+  data, status_code, headers = api_instance.delete_service_body_with_http_info(service_body_id, opts)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
@@ -767,6 +772,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **service_body_id** | **Integer** | ID of service body |  |
+| **force** | **String** | Force deletion of service body and all associated meetings | [optional][default to &#39;false&#39;] |
 
 ### Return type
 
@@ -1526,6 +1532,72 @@ end
 - **Accept**: application/json
 
 
+## get_settings
+
+> <SettingsObject> get_settings
+
+Retrieves all settings
+
+Retrieve all server settings. Only accessible to server administrators.
+
+### Examples
+
+```ruby
+require 'time'
+require 'BmltClient'
+# setup authorization
+BmltClient.configure do |config|
+  # Configure OAuth2 access token for authorization: bmltToken
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = BmltClient::RootServerApi.new
+
+begin
+  # Retrieves all settings
+  result = api_instance.get_settings
+  p result
+rescue BmltClient::ApiError => e
+  puts "Error when calling RootServerApi->get_settings: #{e}"
+end
+```
+
+#### Using the get_settings_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<SettingsObject>, Integer, Hash)> get_settings_with_http_info
+
+```ruby
+begin
+  # Retrieves all settings
+  data, status_code, headers = api_instance.get_settings_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <SettingsObject>
+rescue BmltClient::ApiError => e
+  puts "Error when calling RootServerApi->get_settings_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SettingsObject**](SettingsObject.md)
+
+### Authorization
+
+[bmltToken](../README.md#bmltToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## get_user
 
 > <User> get_user(user_id)
@@ -2140,6 +2212,74 @@ end
 | ---- | ---- | ----------- | ----- |
 | **service_body_id** | **Integer** | ID of service body |  |
 | **service_body_update** | [**ServiceBodyUpdate**](ServiceBodyUpdate.md) | Pass in service body object |  |
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+[bmltToken](../README.md#bmltToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## update_settings
+
+> update_settings(settings_update)
+
+Update settings
+
+Updates one or more server settings. Only accessible to server administrators.
+
+### Examples
+
+```ruby
+require 'time'
+require 'BmltClient'
+# setup authorization
+BmltClient.configure do |config|
+  # Configure OAuth2 access token for authorization: bmltToken
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = BmltClient::RootServerApi.new
+settings_update = BmltClient::SettingsUpdate.new # SettingsUpdate | Pass in settings object with values to update
+
+begin
+  # Update settings
+  api_instance.update_settings(settings_update)
+rescue BmltClient::ApiError => e
+  puts "Error when calling RootServerApi->update_settings: #{e}"
+end
+```
+
+#### Using the update_settings_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> update_settings_with_http_info(settings_update)
+
+```ruby
+begin
+  # Update settings
+  data, status_code, headers = api_instance.update_settings_with_http_info(settings_update)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue BmltClient::ApiError => e
+  puts "Error when calling RootServerApi->update_settings_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **settings_update** | [**SettingsUpdate**](SettingsUpdate.md) | Pass in settings object with values to update |  |
 
 ### Return type
 

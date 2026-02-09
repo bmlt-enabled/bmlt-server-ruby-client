@@ -40,6 +40,7 @@
 | **bus_lines** | **String** |  | [optional] |
 | **train_lines** | **String** |  | [optional] |
 | **comments** | **String** |  | [optional] |
+| **admin_notes** | **String** |  | [optional] |
 | **custom_fields** | **Hash&lt;String, String&gt;** |  | [optional] |
 
 ## Example
@@ -84,6 +85,7 @@ instance = BmltClient::MeetingBase.new(
   bus_lines: string,
   train_lines: string,
   comments: string,
+  admin_notes: string,
   custom_fields: {&quot;key1&quot;:&quot;value1&quot;,&quot;key2&quot;:&quot;value2&quot;}
 )
 ```

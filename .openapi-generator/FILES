@@ -36,6 +36,9 @@ docs/ServiceBodyBase.md
 docs/ServiceBodyCreate.md
 docs/ServiceBodyPartialUpdate.md
 docs/ServiceBodyUpdate.md
+docs/SettingsBase.md
+docs/SettingsObject.md
+docs/SettingsUpdate.md
 docs/Token.md
 docs/TokenCredentials.md
 docs/User.md
@@ -79,6 +82,9 @@ lib/BmltClient/models/service_body_base.rb
 lib/BmltClient/models/service_body_create.rb
 lib/BmltClient/models/service_body_partial_update.rb
 lib/BmltClient/models/service_body_update.rb
+lib/BmltClient/models/settings_base.rb
+lib/BmltClient/models/settings_object.rb
+lib/BmltClient/models/settings_update.rb
 lib/BmltClient/models/token.rb
 lib/BmltClient/models/token_credentials.rb
 lib/BmltClient/models/user.rb
@@ -88,4 +94,7 @@ lib/BmltClient/models/user_partial_update.rb
 lib/BmltClient/models/user_update.rb
 lib/BmltClient/models/validation_error.rb
 lib/BmltClient/version.rb
+spec/models/settings_base_spec.rb
+spec/models/settings_object_spec.rb
+spec/models/settings_update_spec.rb
 spec/spec_helper.rb
